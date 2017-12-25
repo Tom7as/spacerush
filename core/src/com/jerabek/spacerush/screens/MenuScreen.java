@@ -3,15 +3,15 @@ package com.jerabek.spacerush.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jerabek.spacerush.utils.Benchmarker;
@@ -21,42 +21,42 @@ import com.jerabek.spacerush.utils.Benchmarker;
  */
 
 public class MenuScreen implements Screen{
-    private Label label;
-    private Label.LabelStyle fontStyle96;
-    private Label.LabelStyle fontStyle48;
+
     private SpriteBatch batch = new SpriteBatch();
     private Texture img = new Texture("badlogic.jpg");
     private Stage stage;
     private OrthographicCamera cam;
-    private Texture segoe96Texture, segoe48Texture;
-    private BitmapFont segoe96Font, segoe48Font;
     private Benchmarker benchmarker;
+    private Skin uiSkin ;
 
 
     public MenuScreen(Game game) {
         cam = new OrthographicCamera();
-        benchmarker = new Benchmarker();
+        benchmarker = new Benchmarker(cam);
+        uiSkin = new Skin(Gdx.files.internal("skin/orangepeelui/uiskin.json"));
 //        stage = new Stage(new ScreenViewport());
         stage = new Stage(new FitViewport(1080, 1920, cam));
 
-        segoe96Texture = new Texture(Gdx.files.internal("font/segoe96.png"), false);
-        segoe96Texture.setFilter(Texture.TextureFilter.MipMapLinearNearest, Texture.TextureFilter.Linear);
-        segoe96Font = new BitmapFont(Gdx.files.internal("font/segoe96.fnt"), new TextureRegion(segoe96Texture), false);
-        segoe96Font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.MipMapNearestLinear);
-        fontStyle96 = new Label.LabelStyle(segoe96Font, Color.WHITE);
+        stage.addActor(benchmarker.getOutputLabel());
 
-        segoe48Texture = new Texture(Gdx.files.internal("font/segoe48.png"), false);
-        segoe48Texture.setFilter(Texture.TextureFilter.MipMapLinearNearest, Texture.TextureFilter.Linear);
-        segoe48Font = new BitmapFont(Gdx.files.internal("font/segoe48.fnt"), new TextureRegion(segoe48Texture), false);
-        segoe48Font.getRegion().getTexture().setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.MipMapNearestLinear);
-        fontStyle48 = new Label.LabelStyle(segoe48Font, Color.WHITE);
+        Table table = new Table();
+        table.setWidth(stage.getWidth());
+        table.align(Align.center);
+        table.setPosition(0,1200);
 
-        label = new Label("output", fontStyle96);
-        label.setSize(1080,100);
-        label.setWrap(true);
-        label.setPosition(cam.position.x - label.getWidth()/2, 1920 - label.getHeight());
-        label.setAlignment(Align.center);
-        stage.addActor(label);
+        Button button1 = new TextButton("Butt1",uiSkin);
+        button1.setWidth(600);
+        button1.setHeight(200);
+        button1.setScale(5);
+        Button button2 = new TextButton("Butt2",uiSkin);
+        button2.setWidth(600);
+        button2.setHeight(200);
+
+        stage.addActor(button1);
+        table.row();
+        table.add(button2);
+
+        stage.addActor(table);
     }
 
     @Override
@@ -69,7 +69,13 @@ public class MenuScreen implements Screen{
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        label.setText(benchmarker.getPercentUsage(delta));
+//        float a = 0;
+//        for (int b=0;b<10000;++b){
+//            for (int i=0;i<1000;++i){
+//                a=delta*i-a;
+//            }
+//        }
+        benchmarker.updateBenchData(delta);
 //        batch.setProjectionMatrix(cam.combined);
         batch.begin();
 //        batch.draw(img, 0, 0, 2000, 2000);
