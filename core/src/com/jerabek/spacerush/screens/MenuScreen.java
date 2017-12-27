@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jerabek.spacerush.utils.Benchmarker;
+import com.jerabek.spacerush.utils.MySkin;
 
 /**
  * Created by Tomas-PC on 23.12.2017.
@@ -27,13 +28,14 @@ public class MenuScreen implements Screen{
     private Stage stage;
     private OrthographicCamera cam;
     private Benchmarker benchmarker;
-    private Skin uiSkin ;
+    private Skin mySkin;
 
 
     public MenuScreen(Game game) {
         cam = new OrthographicCamera();
         benchmarker = new Benchmarker(cam);
-        uiSkin = new Skin(Gdx.files.internal("skin/orangepeelui/uiskin.json"));
+        mySkin = new MySkin().getSkin();
+//        Skin skin2 = new Skin(Gdx.files.internal("jamesPlazin/plain.json"));
 //        stage = new Stage(new ScreenViewport());
         stage = new Stage(new FitViewport(1080, 1920, cam));
 
@@ -42,20 +44,20 @@ public class MenuScreen implements Screen{
         Table table = new Table();
         table.setWidth(stage.getWidth());
         table.align(Align.center);
-        table.setPosition(0,1200);
+        table.setPosition(0,800);
 
-        Button button1 = new TextButton("Butt1",uiSkin);
-        button1.setWidth(600);
-        button1.setHeight(200);
-        button1.setScale(5);
-        Button button2 = new TextButton("Butt2",uiSkin);
-        button2.setWidth(600);
-        button2.setHeight(200);
+        Button button1 = new TextButton("New Game", mySkin);
+        Button button2 = new TextButton("High scores", mySkin);
+        Button button3 = new TextButton("Settings", mySkin);
+        Button button4 = new TextButton("Account", mySkin);
 
-        stage.addActor(button1);
+        table.add(button1).width(750).height(200);
         table.row();
-        table.add(button2);
-
+        table.add(button2).width(750).height(200);
+        table.row();
+        table.add(button3).width(750).height(200);
+        table.row();
+        table.add(button4).width(750).height(200);
         stage.addActor(table);
     }
 

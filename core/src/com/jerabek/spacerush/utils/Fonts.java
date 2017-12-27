@@ -12,49 +12,52 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
  */
 
 public final class Fonts {
-    private LabelStyle segoe96FontStyle, segoe48FontStyle, gothic96FontStyle, gothic48FontStyle;
-    private BitmapFont segoe96Font, segoe48Font, gothic96Font, gothic48Font;
+    private LabelStyle gothic64FontStyle, gothic100FontStyle, gothic128FontStyle;
+    private BitmapFont gothic64Font, gothic100Font, gothic128Font;
 
     public Fonts() {
+        Texture gothic64Texture = new Texture(Gdx.files.internal("font/gothic64.png"), false);
+        gothic64Texture.setFilter(Texture.TextureFilter.MipMapLinearNearest, Texture.TextureFilter.Linear);
+        gothic64Font = new BitmapFont(Gdx.files.internal("font/gothic64.fnt"), new TextureRegion(gothic64Texture), false);
+        gothic64Font.getRegion().getTexture().setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.MipMapNearestLinear);
+        gothic64FontStyle = new LabelStyle(gothic64Font, Color.WHITE);
 
-        Texture gothic96Texture = new Texture(Gdx.files.internal("font/bankGothic96.png"), false);
-        gothic96Texture.setFilter(Texture.TextureFilter.MipMapLinearNearest, Texture.TextureFilter.Linear);
-        gothic96Font = new BitmapFont(Gdx.files.internal("font/bankGothic96.fnt"), new TextureRegion(gothic96Texture), false);
-        gothic96Font.getRegion().getTexture().setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.MipMapNearestLinear);
-        gothic96FontStyle = new LabelStyle(gothic96Font, Color.WHITE);
+        Texture gothic100Texture = new Texture(Gdx.files.internal("font/gothic100.png"), false);
+        gothic100Texture.setFilter(Texture.TextureFilter.MipMapLinearNearest, Texture.TextureFilter.Linear);
+        gothic100Font = new BitmapFont(Gdx.files.internal("font/gothic100.fnt"), new TextureRegion(gothic100Texture), false);
+        gothic100Font.getRegion().getTexture().setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.MipMapNearestLinear);
+        gothic100FontStyle = new LabelStyle(gothic100Font, Color.WHITE);
 
-        Texture gothic48Texture = new Texture(Gdx.files.internal("font/bankGothic48.png"), false);
-        gothic48Texture.setFilter(Texture.TextureFilter.MipMapLinearNearest, Texture.TextureFilter.Linear);
-        gothic48Font = new BitmapFont(Gdx.files.internal("font/bankGothic48.fnt"), new TextureRegion(gothic48Texture), false);
-        gothic48Font.getRegion().getTexture().setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.MipMapNearestLinear);
-        gothic48FontStyle = new LabelStyle(gothic48Font, Color.WHITE);
+        Texture gothic128Texture = new Texture(Gdx.files.internal("font/gothic100.png"), false);
+        gothic128Texture.setFilter(Texture.TextureFilter.MipMapLinearNearest, Texture.TextureFilter.Linear);
+        gothic128Font = new BitmapFont(Gdx.files.internal("font/gothic128.fnt"), new TextureRegion(gothic128Texture), false);
+        gothic128Font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.MipMapNearestLinear);
+        gothic128FontStyle = new LabelStyle(gothic128Font, Color.WHITE);
 
-        Texture segoe96Texture = new Texture(Gdx.files.internal("font/segoe96.png"), false);
-        segoe96Texture.setFilter(Texture.TextureFilter.MipMapLinearNearest, Texture.TextureFilter.Linear);
-        segoe96Font = new BitmapFont(Gdx.files.internal("font/segoe96.fnt"), new TextureRegion(segoe96Texture), false);
-        segoe96Font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.MipMapNearestLinear);
-        segoe96FontStyle = new LabelStyle(segoe96Font, Color.WHITE);
-
-        Texture segoe48Texture = new Texture(Gdx.files.internal("font/segoe48.png"), false);
-        segoe48Texture.setFilter(Texture.TextureFilter.MipMapLinearNearest, Texture.TextureFilter.Linear);
-        segoe48Font = new BitmapFont(Gdx.files.internal("font/segoe48.fnt"), new TextureRegion(segoe48Texture), false);
-        segoe48Font.getRegion().getTexture().setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.MipMapNearestLinear);
-        segoe48FontStyle = new LabelStyle(segoe48Font, Color.WHITE);
     }
 
-    public LabelStyle getGothic96FontStyle(){
-        return gothic96FontStyle;
+    public BitmapFont getGothic64Font() {
+        return gothic64Font;
     }
 
-    public LabelStyle getGothic48FontStyle(){
-        return gothic48FontStyle;
+    public BitmapFont getGothic100Font() {
+        return gothic100Font;
     }
 
-    public LabelStyle getSegoe48FontStyle(){
-        return segoe48FontStyle;
+    public BitmapFont getGothic128Font() {
+        return gothic128Font;
     }
 
-    public LabelStyle getSegoe96FontStyle(){
-        return segoe96FontStyle;
+    public LabelStyle getGothic64FontStyle(){
+        return gothic64FontStyle;
     }
+
+    public LabelStyle getGothic100FontStyle(){
+        return gothic100FontStyle;
+    }
+
+    public LabelStyle getGothic128FontStyle(){
+        return gothic128FontStyle;
+    }
+
 }

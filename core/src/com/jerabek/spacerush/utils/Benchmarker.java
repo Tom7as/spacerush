@@ -16,7 +16,7 @@ public class Benchmarker {
     private Label label, spammer;
 
     public Benchmarker(OrthographicCamera cam) {
-        label = new Label("output", new Fonts().getGothic48FontStyle());
+        label = new Label("output", new Fonts().getGothic64FontStyle());
         label.setSize(1080,150);
         label.setWrap(true);
         label.setPosition(0, 0);
@@ -33,9 +33,9 @@ public class Benchmarker {
 
     public void updateBenchData(float delta) {
 //        percentUsage, frameCount, deltaTimeUsed;
-        if(frameCount>=60) {
-            float timestampDiff = (System.currentTimeMillis() - timestamp)/10f;
-            setLabelText("\nLoad: " + String.format("%.02f", timestampDiff) + "%");
+        if(frameCount>=120) {
+            float timestampDiff = (System.currentTimeMillis() - timestamp)/2;
+            setLabelText("1Sec took: " + String.format("%.02f", timestampDiff) + "ms\nEqual to " + 1000 / timestampDiff * 60 + " fps");
             frameCount = 0;
             timestamp = System.currentTimeMillis();
         }
