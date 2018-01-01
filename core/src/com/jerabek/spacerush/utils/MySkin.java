@@ -4,10 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
@@ -32,7 +29,7 @@ public class MySkin {
         skin.add("gothic100", fonts.getGothic100Font());
         skin.add("gothic128", fonts.getGothic128Font());
 
-        Texture textButtonTexture = new Texture(Gdx.files.internal("skin/round-white.9.png"));
+        Texture textButtonTexture = new Texture(Gdx.files.internal("skin/button-green.png"));
         NinePatchDrawable textButtonNinePatch = new NinePatchDrawable(new NinePatch(textButtonTexture, 25, 25, 25, 25));
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
         textButtonStyle.up = textButtonNinePatch;
