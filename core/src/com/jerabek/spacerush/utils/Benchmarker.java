@@ -41,4 +41,8 @@ public class Benchmarker {
         }
         frameCount++;
     }
+
+    public void printString(String string) {
+        setLabelText(string);
+    }
 }

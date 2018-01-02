@@ -1,29 +1,33 @@
 package com.jerabek.spacerush.screens.inGameObjects;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 
 /**
  * Created by Tomas-PC on 01.01.2018.
  */
 
-public class PlayerShip { //https://stackoverflow.com/questions/28812776/game-character-items-libgdx
-    private Texture shipImage = new Texture("graphics/logo.png");
+public class PlayerShip extends GameObject{ //https://stackoverflow.com/questions/28812776/game-character-items-libgdx
 
+    private int shipID=0;
+    private int attack;
+    private int health;
+    private int speed;
+    private int shield;
+    int rightBorder, leftBorder;
 
-    int shipID=0;
-    int attack;
-    int health;
-    int speed;
-    int shield;
-    int position=0;
+    public PlayerShip(float x, float y, float width, float height, int shipID, int attack, int health, int speed, int shield) {
+        super(x, y, width, height, new Texture("graphics/shipBasic.png"));
 
-    public PlayerShip(int shipID, int attack, int health, int speed, int shield, int position) {
         this.shipID = shipID;
         this.attack = attack;
         this.health = health;
         this.speed = speed;
         this.shield = shield;
-        this.position = position;
+        rightBorder=1040-(int)width;
+        leftBorder=40;
     }
 
     public int getShipID() {
@@ -66,12 +70,15 @@ public class PlayerShip { //https://stackoverflow.com/questions/28812776/game-ch
         this.shield = shield;
     }
 
-    public int getPosition(){
-        return position;
+    public float getShipPosition(){
+        return super.position.x;
     }
 
     public void moveShip(int px){
-        if (position+px<1040&&position+px>40)
-            position += px;
+        if (super.getPosition().x + px < rightBorder && super.getPosition().x + px > leftBorder) {
+            super.getPosition().x += px;
+            super.moveSprite(px);
+        }
+
     }
 }

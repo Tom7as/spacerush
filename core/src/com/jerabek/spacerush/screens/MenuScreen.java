@@ -2,6 +2,7 @@ package com.jerabek.spacerush.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.jerabek.spacerush.SpaceRush;
 import com.jerabek.spacerush.utils.Benchmarker;
 import com.jerabek.spacerush.utils.MySkin;
 
@@ -103,7 +105,6 @@ public class MenuScreen implements Screen{
 
     @Override
     public void render(float delta) {
-
 
 //        float a = 0;
 //        for (int b=0;b<10000;++b){
