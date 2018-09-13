@@ -2,8 +2,6 @@ package com.jerabek.spacerush.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,37 +12,31 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.jerabek.spacerush.SpaceRush;
-import com.jerabek.spacerush.utils.Benchmarker;
+import com.jerabek.spacerush.utils.Benchmark;
 import com.jerabek.spacerush.utils.MySkin;
-
-import static com.jerabek.spacerush.SpaceRush.logMsg;
 
 /**
  * Created by Tomas-PC on 23.12.2017.
  */
 
-public class MenuScreen implements Screen{
+public class MenuScreen extends AbstractScreen{
 
     private SpriteBatch batch = new SpriteBatch();
     private Texture logo = new Texture("graphics/logo.png");
-    private Stage stage;
-    private OrthographicCamera cam;
-    private Benchmarker benchmarker;
+    private Benchmark benchmark;
     private Skin mySkin;
     private Game game;
 
     public MenuScreen(final Game game) {
+        super(game);
         this.game = game;
         cam = new OrthographicCamera();
-        benchmarker = new Benchmarker(cam);
+        benchmark = new Benchmark();
         mySkin = new MySkin().getSkin();
 
-        stage = new Stage(new FitViewport(1080, 1920, cam));
-        Gdx.input.setInputProcessor(stage);
+//        Gdx.input.setInputProcessor(stage);
 
-        stage.addActor(benchmarker.getOutputLabel());
+        if(System.getProperty("debug").equals("1")) stage.addActor(benchmark.getOutputLabel());
 
         TextButton buttonNewGame = new TextButton("New game", mySkin);
         buttonNewGame.addListener(new ClickListener() {
@@ -112,7 +104,6 @@ public class MenuScreen implements Screen{
 //                a=delta*i-a;
 //            }
 //        }
-        benchmarker.updateBenchData(delta);
 //        batch.setProjectionMatrix(cam.combined);
         batch.begin();
         batch.draw(logo, 207, 1170, 666, 246);

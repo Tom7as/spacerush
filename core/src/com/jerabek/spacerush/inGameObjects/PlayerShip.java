@@ -1,15 +1,12 @@
-package com.jerabek.spacerush.screens.inGameObjects;
+package com.jerabek.spacerush.inGameObjects;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 
 /**
  * Created by Tomas-PC on 01.01.2018.
  */
 
-public class PlayerShip extends GameObject{ //https://stackoverflow.com/questions/28812776/game-character-items-libgdx
+public class PlayerShip extends com.jerabek.spacerush.inGameObjects.GameObject { //https://stackoverflow.com/questions/28812776/game-character-items-libgdx
 
     private int shipID=0;
     private int attack;

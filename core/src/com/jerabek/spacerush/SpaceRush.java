@@ -5,13 +5,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.jerabek.spacerush.screens.MenuScreen;
+import com.jerabek.spacerush.screens.PlayScreen;
 
 public class SpaceRush extends Game {
 	public static Screen menuScreen;
 
 	@Override
 	public void create () {
+		System.setProperty("debug", "1");
+
 		menuScreen = new MenuScreen(this);
+
 		setScreen(menuScreen);
 	}
 
@@ -27,8 +31,5 @@ public class SpaceRush extends Game {
 
 	}
 
-	public static void logMsg(String string){
-		System.out.println("||| " + string + " |||");
-	}
 
 }

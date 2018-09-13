@@ -1,4 +1,4 @@
-package com.jerabek.spacerush.screens.inGameObjects;
+package com.jerabek.spacerush.inGameObjects;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
