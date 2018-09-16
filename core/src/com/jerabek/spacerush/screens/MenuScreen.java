@@ -2,6 +2,7 @@ package com.jerabek.spacerush.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -12,39 +13,42 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jerabek.spacerush.utils.Benchmark;
 import com.jerabek.spacerush.utils.MySkin;
+
+import static com.jerabek.spacerush.utils.Functions.logMsg;
 
 /**
  * Created by Tomas-PC on 23.12.2017.
  */
 
-public class MenuScreen extends AbstractScreen{
-
+public class MenuScreen implements Screen {
+    private OrthographicCamera cam;
     private SpriteBatch batch = new SpriteBatch();
     private Texture logo = new Texture("graphics/logo.png");
     private Benchmark benchmark;
     private Skin mySkin;
     private Game game;
+    private Stage stage;
 
     public MenuScreen(final Game game) {
-        super(game);
         this.game = game;
         cam = new OrthographicCamera();
         benchmark = new Benchmark();
         mySkin = new MySkin().getSkin();
+        stage = new Stage(new FitViewport(1080, 1920, cam));
 
-//        Gdx.input.setInputProcessor(stage);
+        Gdx.input.setInputProcessor(stage);
 
-        if(System.getProperty("debug").equals("1")) stage.addActor(benchmark.getOutputLabel());
+
 
         TextButton buttonNewGame = new TextButton("New game", mySkin);
         buttonNewGame.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
                 logMsg("Button New game was clicked");
-                game.setScreen(new PlayScreen(game));
+                game.setScreen(new NewGameConfig(game));
             }
         });
 
