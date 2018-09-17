@@ -1,16 +1,18 @@
 package com.jerabek.spacerush.screens.playClass;
 
 import com.jerabek.spacerush.screens.NewGameConfig;
+import com.jerabek.spacerush.screens.playClass.model.Resources.Resources;
 
 public class GameData {
-    public int money, food, population;
     public GameDate gameDate;
+    public Resources resources = new Resources();
+    public Workers workers;
 
     public GameData(NewGameConfig.GameConfig gameConfig) {
         gameDate = new GameDate(gameConfig.getStartDate());
-        money = gameConfig.getResources().get("money");
-        food = gameConfig.getResources().get("food");
-        population = gameConfig.getResources().get("population");
+        resources.money = gameConfig.getResources().get("money");
+        resources.food = gameConfig.getResources().get("food");
+        resources.population = gameConfig.getResources().get("population");
     }
 
     public String getGameDate() {
@@ -19,7 +21,9 @@ public class GameData {
 
     public void endTurn(){
         gameDate.addMonth();
-        food-=population/12;
+
+        workers.production();
+        workers.foodConsumption();
 
     }
 

@@ -38,7 +38,7 @@ public class UI {
         popLabel.setSize(360, 100);
 
         endTurnBtn.setPosition(720, 0);
-        endTurnBtn.setSize(360, 200);
+        endTurnBtn.setSize(460, 200);
 
 //        table.setWidth(1080);
 //        table.align(Align.top);

@@ -23,7 +23,7 @@ import static com.jerabek.spacerush.utils.Functions.logMsg;
 
 public class PlayScreen implements Screen {
 
-    private GameData gameData;
+    private static GameData gameData;
     private Game game;
     private Benchmark benchmark = new Benchmark();
     private SpriteBatch batch = new SpriteBatch();
