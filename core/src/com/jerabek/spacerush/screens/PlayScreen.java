@@ -30,11 +30,12 @@ public class PlayScreen implements Screen {
     private OrthographicCamera cam = new OrthographicCamera();
     private Stage stage = new Stage(new FitViewport(1080, 1920, cam));
     private Vector3 touchPoint = new Vector3(0,0,0);
-    private UI ui = new UI();
+    private UI ui;
 
     PlayScreen(final Game game, NewGameConfig.GameConfig gameConfig) {
         this.game = game;
         gameData = new GameData(gameConfig);
+        ui = new UI(gameData);
 
         if(gameConfig.debugging) stage.addActor(benchmark.getOutputLabel());
 
@@ -45,7 +46,7 @@ public class PlayScreen implements Screen {
         ui.endTurnBtn().addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                logMsg("End turn clicked. Game date: "+gameData.getGameDate());
+                logMsg("End turn clicked. Game date: "+gameData.getDate());
                 gameData.endTurn();
             }
         });
@@ -61,10 +62,10 @@ public class PlayScreen implements Screen {
         if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
 //            game.setScreen(SpaceRush.menuScreen);
         }
-        if(Gdx.input.isTouched()){
-            touchPoint = touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            cam.unproject(touchPoint);
-        }
+//        if(Gdx.input.isTouched()){
+//            touchPoint = touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+//            cam.unproject(touchPoint);
+//        }
 
         ui.updateLabels(gameData);
 //        update();

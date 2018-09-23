@@ -4,11 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.TextureArray;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
 /**
  * Created by Tomas-PC on 26.12.2017.
@@ -47,10 +51,9 @@ public class MySkin {
         TextButton.TextButtonStyle testButtonStyle = new TextButton.TextButtonStyle();
         testButtonStyle.up = textButtonNinePatch;
         testButtonStyle.down = textButtonNinePatch;
-//        textButtonStyle.checked = skin.newDrawable("white", Color.BLUE);
-//        textButtonStyle.over = skin.newDrawable("white", Color.LIGHT_GRAY);
         testButtonStyle.font = skin.getFont("gothic100");
         testButtonStyle.fontColor = lightGrey;
+        testButtonStyle.downFontColor = lightGrey;
         skin.add("default", testButtonStyle);
 
         Label.LabelStyle labelStyle = new Label.LabelStyle();
@@ -58,6 +61,20 @@ public class MySkin {
         labelStyle.fontColor = lightGrey;
 //        labelStyle.background = ;
         skin.add("default", labelStyle);
+
+        ImageButton.ImageButtonStyle imageButtonStyle= new ImageButton.ImageButtonStyle();
+        imageButtonStyle.up = textButtonNinePatch;
+        imageButtonStyle.down = textButtonNinePatch;
+        imageButtonStyle.imageDown = new SpriteDrawable(new Sprite(new Texture("skin/imageButton/arrowUp.png")));
+        imageButtonStyle.imageUp = new SpriteDrawable(new Sprite(new Texture("skin/imageButton/arrowUp.png")));
+        skin.add("upArrow", imageButtonStyle);
+
+        imageButtonStyle= new ImageButton.ImageButtonStyle();
+        imageButtonStyle.up = textButtonNinePatch;
+        imageButtonStyle.down = textButtonNinePatch;
+        imageButtonStyle.imageDown = new SpriteDrawable(new Sprite(new Texture("skin/imageButton/arrowDown.png")));
+        imageButtonStyle.imageUp = new SpriteDrawable(new Sprite(new Texture("skin/imageButton/arrowDown.png")));
+        skin.add("downArrow", imageButtonStyle);
     }
 
     public Skin getSkin() {

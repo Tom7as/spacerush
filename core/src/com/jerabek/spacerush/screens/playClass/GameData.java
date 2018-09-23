@@ -3,35 +3,37 @@ package com.jerabek.spacerush.screens.playClass;
 import com.jerabek.spacerush.screens.NewGameConfig;
 import com.jerabek.spacerush.screens.playClass.model.Resources.Resources;
 
+
 public class GameData {
-    public GameDate gameDate;
-    public Resources resources = new Resources();
+//    public NewGameConfig.GameConfig gameConfig;
+    public Date date;
+    public Resources resources;
     public Workers workers;
 
     public GameData(NewGameConfig.GameConfig gameConfig) {
-        gameDate = new GameDate(gameConfig.getStartDate());
-        resources.money = gameConfig.getResources().get("money");
-        resources.food = gameConfig.getResources().get("food");
-        resources.population = gameConfig.getResources().get("population");
+//        this.gameConfig = gameConfig;
+        date = new Date(gameConfig.getStartDate());
+        workers = new Workers(this, gameConfig);
+        resources = new Resources();
+
     }
 
-    public String getGameDate() {
-        return gameDate.year+"/"+gameDate.month;
+    public String getDate() {
+        return date.year+"/"+ date.month;
     }
 
     public void endTurn(){
-        gameDate.addMonth();
+        date.addMonth();
 
         workers.production();
         workers.foodConsumption();
-
     }
 
-    private static class GameDate {
+    private static class Date {
         int year;
         int month;
 
-        GameDate(int year) {
+        Date(int year) {
             this.year = year;
             this.month = 1;
         }

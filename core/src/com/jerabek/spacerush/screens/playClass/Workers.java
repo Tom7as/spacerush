@@ -1,37 +1,41 @@
 package com.jerabek.spacerush.screens.playClass;
 
+import com.jerabek.spacerush.screens.NewGameConfig;
 import com.jerabek.spacerush.screens.playClass.model.professions.Builder;
 import com.jerabek.spacerush.screens.playClass.model.professions.Farmer;
 import com.jerabek.spacerush.screens.playClass.model.professions.Hunter;
 import com.jerabek.spacerush.screens.playClass.model.professions.Unemployed;
 
-class Workers {
+public class Workers {
 
-    private final GameData gameData;
+    private final GameData data;
 
-    private final Unemployed unemployed;
-    private final Builder builders;
-    private final Farmer farmers;
-    private final Hunter hunters;
+    public int population;
 
-    Workers(GameData gameData) {
-        this.gameData = gameData;
-        unemployed = new Unemployed(gameData.resources.population, 0);
+    public final Unemployed unemployed;
+    public final Builder builders;
+    public final Farmer farmers;
+    public final Hunter hunters;
+
+    Workers(GameData data, NewGameConfig.GameConfig gameConfig) {
+        this.data = data;
+
+        population = gameConfig.getResources().get("population");
+        unemployed = new Unemployed(gameConfig.getResources().get("population"));
+
         builders = new Builder(0,5);
         farmers = new Farmer(0,5);
         hunters = new Hunter(0,5);
     }
 
-
     public void production(){
-        gameData.resources.food = farmers.work();
-
+        data.resources.food += farmers.work();
     }
 
-    public int foodConsumption(){
-        return unemployed.eat() +
+    public void foodConsumption(){
+        data.resources.food = data.resources.food - (unemployed.eat() +
                 builders.eat() +
                 farmers.eat() +
-                hunters.eat();
+                hunters.eat());
     }
 }

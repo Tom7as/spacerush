@@ -1,8 +1,17 @@
 package com.jerabek.spacerush.screens.playClass.model.professions;
 
-public final class Unemployed extends AbstractWorker {
+import com.jerabek.spacerush.screens.playClass.Workers;
 
-    public Unemployed(int unemployed, int productivity) {
-        super(unemployed, productivity, 3);
+public final class Unemployed {
+    public int count;
+    public int foodConsumption;
+
+    public Unemployed(int count) {
+        this.count = count;
+        this.foodConsumption = 3;
+    }
+
+    public int eat(){
+        return count*foodConsumption;
     }
 }
