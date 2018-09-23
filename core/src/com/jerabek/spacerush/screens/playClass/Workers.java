@@ -20,16 +20,16 @@ public class Workers {
     Workers(GameData data, NewGameConfig.GameConfig gameConfig) {
         this.data = data;
 
-        population = gameConfig.getResources().get("population");
-        unemployed = new Unemployed(gameConfig.getResources().get("population"));
+        population = gameConfig.population;
+        unemployed = new Unemployed(gameConfig.population);
 
         builders = new Builder(0,5);
-        farmers = new Farmer(0,5);
+        farmers = new Farmer(0,5, 8);
         hunters = new Hunter(0,5);
     }
 
     public void production(){
-        data.resources.food += farmers.work();
+        data.resources.food += farmers.work(data);
     }
 
     public void foodConsumption(){

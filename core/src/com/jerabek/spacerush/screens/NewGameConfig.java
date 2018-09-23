@@ -12,8 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jerabek.spacerush.SpaceRush;
-
-import java.util.HashMap;
+import com.jerabek.spacerush.screens.playClass.model.Resources.Resources;
 
 import static com.jerabek.spacerush.utils.Functions.logMsg;
 
@@ -92,34 +91,27 @@ public class NewGameConfig implements Screen{
     }
 
     public class GameConfig {
-        Boolean debugging;
-        HashMap<String, Integer> resources = new HashMap<>();
-        private int startDate;
+        public Boolean debugging;
+        public Resources resources = new Resources();
+        public int population;
+        public int startYear;
 
         GameConfig(){}
 
         GameConfig(Boolean debugging, int money, int food, int population) {
             this.debugging = debugging;
-            resources.put("money", money);
-            resources.put("food", food);
-            resources.put("population", population);
+            resources.money = money;
+            resources.food = food;
+            this.population = population;
         }
 
         public GameConfig easy(){
             debugging = false;
-            startDate = -4000;
-            resources.put("money", 10000);
-            resources.put("food", 100);
-            resources.put("population", 50);
+            startYear = -4000;
+            resources.money = 10000;
+            resources.food = 100;
+            population = 50;
             return this;
-        }
-
-        public HashMap<String, Integer> getResources() {
-            return resources;
-        }
-
-        public int getStartDate() {
-            return startDate;
         }
     }
 }

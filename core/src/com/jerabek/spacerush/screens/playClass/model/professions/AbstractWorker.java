@@ -1,9 +1,8 @@
 package com.jerabek.spacerush.screens.playClass.model.professions;
 
-import com.jerabek.spacerush.screens.playClass.GameData;
 import com.jerabek.spacerush.screens.playClass.Workers;
 
-public abstract class AbstractWorker {
+public abstract class AbstractWorker{
 
     public int count;
     public int productivity;

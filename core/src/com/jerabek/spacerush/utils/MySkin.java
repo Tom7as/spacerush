@@ -59,21 +59,24 @@ public class MySkin {
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         labelStyle.font = skin.getFont("gothic64");
         labelStyle.fontColor = lightGrey;
-//        labelStyle.background = ;
         skin.add("default", labelStyle);
 
+        Sprite imageArrowUp = new Sprite(new Texture("skin/imageButton/arrowUp.png"));
+        imageArrowUp.setColor(lightGrey);
         ImageButton.ImageButtonStyle imageButtonStyle= new ImageButton.ImageButtonStyle();
         imageButtonStyle.up = textButtonNinePatch;
         imageButtonStyle.down = textButtonNinePatch;
-        imageButtonStyle.imageDown = new SpriteDrawable(new Sprite(new Texture("skin/imageButton/arrowUp.png")));
-        imageButtonStyle.imageUp = new SpriteDrawable(new Sprite(new Texture("skin/imageButton/arrowUp.png")));
+        imageButtonStyle.imageDown = new SpriteDrawable(imageArrowUp);
+        imageButtonStyle.imageUp = new SpriteDrawable(imageArrowUp);
         skin.add("upArrow", imageButtonStyle);
 
+        Sprite imageArrowDown = new Sprite(new Texture("skin/imageButton/arrowDown.png"));
+        imageArrowDown.setColor(lightGrey);
         imageButtonStyle= new ImageButton.ImageButtonStyle();
         imageButtonStyle.up = textButtonNinePatch;
         imageButtonStyle.down = textButtonNinePatch;
-        imageButtonStyle.imageDown = new SpriteDrawable(new Sprite(new Texture("skin/imageButton/arrowDown.png")));
-        imageButtonStyle.imageUp = new SpriteDrawable(new Sprite(new Texture("skin/imageButton/arrowDown.png")));
+        imageButtonStyle.imageDown = new SpriteDrawable(imageArrowDown);
+        imageButtonStyle.imageUp = new SpriteDrawable(imageArrowDown);
         skin.add("downArrow", imageButtonStyle);
     }
 
