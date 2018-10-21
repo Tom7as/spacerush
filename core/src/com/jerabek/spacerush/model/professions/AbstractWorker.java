@@ -1,4 +1,4 @@
-package com.jerabek.spacerush.screens.playClass.model.professions;
+package com.jerabek.spacerush.model.professions;
 
 import com.jerabek.spacerush.screens.playClass.Workers;
 
@@ -14,18 +14,12 @@ public abstract class AbstractWorker{
         this.foodConsumption = foodConsumption;
     }
 
-    public void addOne(Workers workers){
-        if(workers.unemployed.count>0){
-            ++count;
-            --workers.unemployed.count;
-        }
+    public void addOne(){
+        ++count;
     }
 
-    public void removeOne(Workers workers){
-        if(count>0) {
-            --count;
-            ++workers.unemployed.count;
-        }
+    public void removeOne(){
+        --count;
     }
 
     public int work(){

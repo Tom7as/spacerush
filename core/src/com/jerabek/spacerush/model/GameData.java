@@ -1,7 +1,7 @@
-package com.jerabek.spacerush.screens.playClass;
+package com.jerabek.spacerush.model;
 
-import com.jerabek.spacerush.screens.NewGameConfig;
-import com.jerabek.spacerush.screens.playClass.model.Resources.Resources;
+import com.jerabek.spacerush.model.resources.Resources;
+import com.jerabek.spacerush.screens.playClass.Workers;
 
 
 public class GameData {
@@ -10,8 +10,7 @@ public class GameData {
     public Resources resources;
     public Workers workers;
 
-    public GameData(NewGameConfig.GameConfig gameConfig) {
-//        this.gameConfig = gameConfig;
+    public GameData(GameConfig gameConfig) {
         date = new Date(gameConfig.startYear);
         workers = new Workers(this, gameConfig);
         resources = new Resources();
@@ -29,7 +28,7 @@ public class GameData {
         workers.foodConsumption();
     }
 
-    public static class Date {
+    public class Date {
         int year;
         int month;
 

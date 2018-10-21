@@ -1,6 +1,6 @@
-package com.jerabek.spacerush.screens.playClass.model.professions;
+package com.jerabek.spacerush.model.professions;
 
-import com.jerabek.spacerush.screens.playClass.GameData;
+import com.jerabek.spacerush.model.GameData;
 
 public final class Farmer extends AbstractWorker {
 

@@ -6,7 +6,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.jerabek.spacerush.screens.MenuScreen;
-import com.jerabek.spacerush.screens.PlayScreen;
 import com.jerabek.spacerush.utils.MySkin;
 
 public class SpaceRush extends Game {

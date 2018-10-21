@@ -1,4 +1,4 @@
-package com.jerabek.spacerush.screens.playClass.model.professions;
+package com.jerabek.spacerush.model.professions;
 
 public final class Hunter extends AbstractWorker {
 

@@ -1,12 +1,11 @@
-package com.jerabek.spacerush.screens.playClass;
+package com.jerabek.spacerush.screens.playClass.ui;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.jerabek.spacerush.model.GameData;
 
 import java.util.HashSet;
 
@@ -30,6 +29,9 @@ public class UI {
     public static final ImageButton buildersDownBtn = new ImageButton(mySkin, "upArrow");
     private final GameData gameData;
 
+    private WorkerUi builderUi;
+    private WorkerUi hunterUi;
+    private WorkerUi farmerUi;
 
     public UI(GameData gameData) {
         this.gameData = gameData;
@@ -53,29 +55,6 @@ public class UI {
         endTurnBtn.setPosition(720, 0);
         endTurnBtn.setSize(460, 200);
 
-// ---- builder ui
-        buildersUpBtn.setPosition(0, 192);
-        buildersUpBtn.setSize(128, 128);
-
-        buildersLabel.setPosition(0, 128);
-        buildersLabel.setSize(128, 64);
-
-        buildersDownBtn.setPosition(0, 0); //x u dalsiho bude (128 + 7) * n
-        buildersDownBtn.setSize(128, 128);
-
-        buildersUpBtn.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                gameData.workers.farmers.addOne(gameData.workers);
-            }
-        });
-        buildersDownBtn.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                gameData.workers.farmers.removeOne(gameData.workers);
-            }
-        });
-
         uiElements.add(cityNameLabel);
         uiElements.add(dateLabel);
         uiElements.add(moneyLabel);
@@ -83,10 +62,14 @@ public class UI {
         uiElements.add(popLabel);
         uiElements.add(endTurnBtn);
 
-        uiElements.add(buildersLabel);
-        uiElements.add(buildersUpBtn);
-        uiElements.add(buildersDownBtn);
+        builderUi = new WorkerUi(gameData.workers.builders, gameData.workers, 0);
+        hunterUi = new WorkerUi(gameData.workers.hunters, gameData.workers, 1);
+        farmerUi = new WorkerUi(gameData.workers.farmers, gameData.workers, 2);
 
+        uiElements.addAll(builderUi.getUI());
+        uiElements.addAll(hunterUi.getUI());
+        uiElements.addAll(farmerUi.getUI());
+//        uiElements.addAll();
     }
 
     public HashSet<Actor> getUI() {
@@ -99,7 +82,9 @@ public class UI {
         popLabel.setText("P: " + data.workers.population + "(" + data.workers.unemployed.count + ")");
         dateLabel.setText("D" + data.getDate());
 
-        buildersLabel.setText("" + data.workers.farmers.count);
+        builderUi.getCountLabel().setText("" + data.workers.builders.count);
+        hunterUi.getCountLabel().setText("" + data.workers.hunters.count);
+        farmerUi.getCountLabel().setText("" + data.workers.farmers.count);
     }
 
     public TextButton endTurnBtn() {

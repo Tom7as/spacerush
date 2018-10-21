@@ -14,10 +14,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.jerabek.spacerush.screens.newGame.NewGame;
 import com.jerabek.spacerush.utils.Benchmark;
+import com.jerabek.spacerush.utils.Functions;
 import com.jerabek.spacerush.utils.MySkin;
 
-import static com.jerabek.spacerush.utils.Functions.logMsg;
+import static com.jerabek.spacerush.utils.Functions.logMsgUserAction;
+
 
 /**
  * Created by Tomas-PC on 23.12.2017.
@@ -41,14 +44,12 @@ public class MenuScreen implements Screen {
 
         Gdx.input.setInputProcessor(stage);
 
-
-
         TextButton buttonNewGame = new TextButton("New game", mySkin);
         buttonNewGame.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                logMsg("Button New game was clicked");
-                game.setScreen(new NewGameConfig(game));
+                logMsgUserAction("Button New game was clicked");
+                game.setScreen(new NewGame(game));
             }
         });
 
@@ -56,7 +57,7 @@ public class MenuScreen implements Screen {
         buttonHighscores.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                logMsg("Button High scores was clicked");
+                logMsgUserAction("Button High scores was clicked");
 //                game.setScreen(screen);
             }
         });
@@ -65,7 +66,7 @@ public class MenuScreen implements Screen {
         buttonSettings.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                logMsg("Button Settings was clicked");
+                logMsgUserAction("Button Settings was clicked");
 //                game.setScreen(screen);
             }
         });
@@ -74,7 +75,7 @@ public class MenuScreen implements Screen {
         buttonAccount.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                logMsg("Button Account was clicked");
+                logMsgUserAction("Button Account was clicked");
 //                game.setScreen(screen);
             }
         });

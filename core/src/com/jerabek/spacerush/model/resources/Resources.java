@@ -1,4 +1,4 @@
-package com.jerabek.spacerush.screens.playClass.model.Resources;
+package com.jerabek.spacerush.model.resources;
 
 public class Resources {
     public int food;
